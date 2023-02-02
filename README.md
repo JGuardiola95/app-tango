@@ -4,7 +4,7 @@ This project provides a fibonacci calculator app.
 
 ## Configuration
 
-The project runs on port 3000. If port 3000 is already in use, NextJS will take charge on stablishing the connection on other port.
+The project runs on port 3004. If port 3004 is already in use, you can change the port configuration on the "start" script inside the package.json file.
 
 Before starting the project, make sure to install the dependencies.
 
