@@ -47,3 +47,13 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+input {
+  width: 150px;
+  padding: 10px;
+}
+
+button {
+  width: 150px;
+  padding: 10px;
+}
