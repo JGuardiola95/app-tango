@@ -26,8 +26,8 @@ export const useFibonacciCalculatorSource = () => {
       let errMsg = 'Something went wrong';
       if (axios.isAxiosError(error) && error.response && error.response.data) {
         errMsg = error.response.data.message;
-        setErrorMsg(errMsg);
       }
+      setErrorMsg(errMsg);
     }
   }, [number]);
 
