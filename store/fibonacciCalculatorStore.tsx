@@ -1,21 +1,33 @@
 import { getFibonacciNumber } from '@/services/getFibonacciNumber';
+import axios, { AxiosError } from 'axios';
 import { createContext, Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from 'react';
 
 interface FibonacciCalculatorSource {
-  number: number | undefined;
-  setNumber: Dispatch<SetStateAction<number | undefined>>;
-  fibonacciNumber: number | undefined;
+  number: number;
+  setNumber: Dispatch<SetStateAction<number>>;
+  fibonacciNumber: number;
   handleFibonacciNumber: () => void;
+  errorMsg: string;
 }
 
 export const useFibonacciCalculatorSource = () => {
-  const [number, setNumber] = useState<number>();
-  const [fibonacciNumber, setFibonacciNumber] = useState<number>();
+  const [number, setNumber] = useState<number>(0);
+  const [fibonacciNumber, setFibonacciNumber] = useState<number>(0);
+  const [errorMsg, setErrorMsg] = useState<string>('');
 
   const handleFibonacciNumber = useCallback(async () => {
-    if (number) {
-      const fetchedFibonacciNumber = await getFibonacciNumber(number);
-      setFibonacciNumber(fetchedFibonacciNumber);
+    try {
+      setErrorMsg('');
+      if (number) {
+        const fetchedFibonacciNumber = (await getFibonacciNumber(number)) || 0;
+        setFibonacciNumber(fetchedFibonacciNumber);
+      }
+    } catch (error) {
+      let errMsg = 'Something went wrong';
+      if (axios.isAxiosError(error) && error.response && error.response.data) {
+        errMsg = error.response.data.message;
+        setErrorMsg(errMsg);
+      }
     }
   }, [number]);
 
@@ -23,7 +35,7 @@ export const useFibonacciCalculatorSource = () => {
   //   handleFibonacciNumber();
   // }, [handleFibonacciNumber]);
 
-  return { number, fibonacciNumber, setNumber, handleFibonacciNumber };
+  return { number, fibonacciNumber, setNumber, handleFibonacciNumber, errorMsg };
 };
 
 const FibonacciCalculatorContext = createContext<FibonacciCalculatorSource>({} as FibonacciCalculatorSource);

@@ -49,11 +49,13 @@ a {
 }
 
 input {
+  margin: 5px;
   width: 150px;
   padding: 10px;
 }
 
 button {
+  margin: 5px;
   width: 150px;
   padding: 10px;
 }
