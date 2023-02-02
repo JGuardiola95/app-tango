@@ -1,38 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# APP Tango Challenge
 
-## Getting Started
+This project provides a fibonacci calculator app.
 
-First, run the development server:
+## Configuration
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The project runs on port 3000. If port 3000 is already in use, NextJS will take charge on stablishing the connection on other port.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Before starting the project, make sure to install the dependencies.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+If you end up changing the PORT constant on the API from port 80, you will have to change API_URL constant inside services/getFibonacciNumber
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Scripts
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+You can run the following scripts using npm:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `npm run start` to build the project and start the server.
+- `npm run dev` to enter dev mode, where you can watch changes on the fly.
+- `npm run e2e` to open cypress and test the fibonacci calculator.
 
-## Learn More
+## Assumptions
 
-To learn more about Next.js, take a look at the following resources:
+The API is designed for small numbers, and performance may start to degrade for numbers greater than 40.
+e2e was tested using cypress and selecting e2e testing and chrome as the browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scalability
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To improve the project, the following possibilities can be considered:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Using a validation library such as Joi to handle number input better.
+- Implementing timeout middleware to handle requests that take too long.
+- Adding a cache to store big Fibonacci numbers to improve performance.
+- Add E2E testing using cypress or puppeteer.

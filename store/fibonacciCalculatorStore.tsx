@@ -23,7 +23,7 @@ export const useFibonacciCalculatorSource = () => {
         setFibonacciNumber(fetchedFibonacciNumber);
       }
     } catch (error) {
-      let errMsg = 'Something went wrong';
+      let errMsg = 'Something went wrong. Check if API is up';
       if (axios.isAxiosError(error) && error.response && error.response.data) {
         errMsg = error.response.data.message;
       }

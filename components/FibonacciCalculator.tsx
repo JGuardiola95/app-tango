@@ -23,8 +23,8 @@ function FibonacciForm() {
 
   return (
     <div className={styles['form-container']}>
-      <input type="text" pattern="[0-9]*" value={number} onChange={handleInput} />
-      <button onClick={handleFibonacciNumber} disabled={!number || isNaN(Number(number))}>
+      <input className='number-input' type="text" pattern="[0-9]*" value={number} onChange={handleInput} />
+      <button className='calculate-button' onClick={handleFibonacciNumber} disabled={!number || isNaN(Number(number))}>
         Calculate
       </button>
     </div>
@@ -35,7 +35,7 @@ function FibonacciResultViewer() {
   const { fibonacciNumber, errorMsg } = useFibonacciCalculator();
   return (
     <>
-      <div>
+      <div className='result-viewer'>
         Fibonacci result: <strong>{fibonacciNumber}</strong>
       </div>
       <div className={styles.error}>{errorMsg}</div>
